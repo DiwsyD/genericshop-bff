@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: genericshop-bff
+  security:
+    user:
+      name: 1
+      password: 1
+
+server:
+  port: 8086
+
+eureka:
+  client:
+    enabled: true
+
+
+
+app:
+  api:
+
+    version:
+      genericshop: "/api/v1"
+
+    path:
+      building:
+        createBuilding: "/building/create"
+        getBuilding: "/building"
+        getBuildings: "/buildings"
+        deleteBuilding: "/building/delete"
+        updateBuilding: "/building/update"
+      address:
+        createAddress: "/address/create"
+        getAddress: "/address"
+        getAddresses: "/addresses"
+        updateAddress: "/address/update"
+        deleteAddress: "/address/delete"
+      user:
+        getUser: "/user"

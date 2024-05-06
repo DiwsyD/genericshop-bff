@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buildings</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+
+    <h1>Buildings</h1>
+
+    <tr th:each="building : ${buildings}">
+        <td th:text="${building.id}"></td>
+        <td th:text="${building.price}"></td>
+        <td th:text="${building.square}"></td>
+        <td th:text="${building.full_address.city}"></td>
+        <td th:text="${building.full_address.street}"></td>
+        <br>
+        <br>
+    </tr>
+
+
+</body>
+</html>
