@@ -1,10 +1,7 @@
 spring:
   application:
     name: genericshop-bff
-  security:
-    user:
-      name: 1
-      password: 1
+
 
 server:
   port: 8086

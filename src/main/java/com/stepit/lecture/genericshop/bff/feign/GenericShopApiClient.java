@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient("GENERICSHOP")
+@FeignClient("genericshop")
 public interface GenericShopApiClient {
 
     @GetMapping("${app.api.version.genericshop}${app.api.path.building.getBuildings}")

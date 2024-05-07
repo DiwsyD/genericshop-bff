@@ -42,7 +42,7 @@ public class UserDetailsServiceConfig implements UserDetailsService {
                 .build();
     }
 
-    private Collection<GrantedAuthority> mapRolesToGrantedAuthorities(Role role) {
+    private Collection<SimpleGrantedAuthority> mapRolesToGrantedAuthorities(Role role) {
         return Stream.of(role)
                 .map(r -> new SimpleGrantedAuthority(r.toString()))
                 .collect(Collectors.toList());
