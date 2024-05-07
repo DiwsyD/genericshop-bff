@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,6 +26,9 @@ public class SecurityConfig {
 
     @Value("${app.api.path.address.getAddresses}")
     private String PATH_ADDRESSES;
+    
+    @Value("${security.app.authentication.cookie}")
+    private String USER_CREDENTIALS_COOKIE;
 
     private final SignInSuccessfulHandler signInSuccessfulHandler;
 
@@ -51,10 +55,12 @@ public class SecurityConfig {
                         .anyRequest()
                         .permitAll()
                 )
+                .sessionManagement(sessm -> sessm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(login -> login
                         .loginPage("/signin")
                         .successHandler(signInSuccessfulHandler)
-                )
+                )//I will check this
+                .logout(logout -> logout.deleteCookies(USER_CREDENTIALS_COOKIE))
                 .addFilterBefore(singInRequestFilter, UsernamePasswordAuthenticationFilter.class)
         ;
         return http.build();

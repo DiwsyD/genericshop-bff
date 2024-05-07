@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -21,11 +22,14 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class SingInRequestFilter extends OncePerRequestFilter {
 
+    @Value("${security.app.authentication.cookie}")
+    private String USER_CREDENTIALS_COOKIE;
+
     private final CookieService cookieService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String jsonPrincipal = cookieService.getCookie("user_data", request);
+        String jsonPrincipal = cookieService.getCookie(USER_CREDENTIALS_COOKIE, request);
         if (jsonPrincipal != null) {
             CustomUserDetails customUserDetails = new Gson().fromJson(jsonPrincipal, CustomUserDetails.class);
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

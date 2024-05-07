@@ -6,10 +6,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 @Service
 public class CookieService {
-
-    //CreateCookies
 
     public void createCookie(
             String cookieName,
@@ -42,14 +43,22 @@ public class CookieService {
                 data = encryptor.decrypt(value);
             }
         }
-
         return data;
     }
 
-    //GetCookies
-
-
     //ClearCookie
+    public void clearCookie(HttpServletRequest request, HttpServletResponse response) {
+        Optional.ofNullable(request.getCookies())
+                .ifPresent(cookies ->
+                        Arrays.stream(cookies)
+                                .forEach(cookie -> {
+                                    cookie.setMaxAge(0);
+                                    cookie.setPath("/");
+                                    response.addCookie(cookie);
+                                })
+                );
+    }
+
     //UpdateCookie
 
 }

@@ -10,7 +10,10 @@ eureka:
   client:
     enabled: true
 
-
+security:
+  app:
+    authentication:
+      cookie: "ud"
 
 app:
   api:
