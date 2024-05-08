@@ -1,13 +1,12 @@
 package com.stepit.lecture.genericshop.security.service;
 
-import com.stepit.lecture.genericshop.exception.UserNotFoundException;
+import com.stepit.lecture.genericshop.exception.custom.UserNotFoundException;
 import com.stepit.lecture.genericshop.security.entity.CustomUserDetails;
 import com.stepit.lecture.genericshop.user.entity.Role;
 import com.stepit.lecture.genericshop.user.entity.User;
 import com.stepit.lecture.genericshop.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,7 +21,7 @@ import java.util.stream.Stream;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceConfig implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;

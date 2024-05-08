@@ -1,4 +1,4 @@
-package com.stepit.lecture.genericshop.exception;
+package com.stepit.lecture.genericshop.exception.custom;
 
 public class UserNotFoundException extends RuntimeException {
 

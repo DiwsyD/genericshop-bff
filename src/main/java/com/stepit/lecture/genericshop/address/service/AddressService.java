@@ -1,18 +1,18 @@
-package com.stepit.lecture.genericshop.user.service;
+package com.stepit.lecture.genericshop.address.service;
 
+import com.stepit.lecture.genericshop.address.dto.AddressDto;
 import com.stepit.lecture.genericshop.bff.feign.client.GenericShopApiClient;
-import com.stepit.lecture.genericshop.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class AddressService {
 
     private final GenericShopApiClient genericShopApiClient;
 
-
-    public User getUser(String email) {
-        return genericShopApiClient.getUserByEmail(email);
+    public AddressDto getAddress(Integer id) {
+        return genericShopApiClient.getAddress(id);
     }
+
 }

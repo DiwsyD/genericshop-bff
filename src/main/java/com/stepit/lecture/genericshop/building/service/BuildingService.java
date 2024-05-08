@@ -1,6 +1,6 @@
 package com.stepit.lecture.genericshop.building.service;
 
-import com.stepit.lecture.genericshop.bff.feign.GenericShopApiClient;
+import com.stepit.lecture.genericshop.bff.feign.client.GenericShopApiClient;
 import com.stepit.lecture.genericshop.building.dto.BuildingDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
